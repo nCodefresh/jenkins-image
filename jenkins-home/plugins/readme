@@ -1,0 +1,4 @@
+** Get list of plugins from jenkins server
+
+Copy and past `script-list-plugins.groovy` in script console http://[JENKINS_URL]/script
+after running the script, use the output to update plugins.txt
