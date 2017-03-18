@@ -1,8 +1,6 @@
 webapp:
   container_name: jenkins
   build: .
-  ports:
-    - "80:8080"
   volumes:
     - /var/jenkins_home
 
