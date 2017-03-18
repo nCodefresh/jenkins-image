@@ -1,13 +1,16 @@
-webapp:
-  container_name: jenkins
-  build: .
-  volumes:
-    - /var/jenkins_home
+version: '2'
+services:
+  webapp:
+    container_name: jenkins
+    build: .
+    volumes:
+      - /var/jenkins_home
 
-nginx:
-  container_name: nginx
-  build: ./nginx
-  ports:
-    - "80:80"
-  environment:
-    - APP_PORT=8080
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    ports:
+      - '80:80'
+    environment:
+      USERNAME: $USERNAME
+      PASSWORD: $PASSWORD
