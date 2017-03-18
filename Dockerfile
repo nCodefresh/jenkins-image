@@ -17,4 +17,4 @@ COPY jenkins-home/userContent $JENKINS_REF/userContent
 COPY jenkins-home/jobs $JENKINS_REF/jobs/
 COPY jenkins-home/init.groovy.d $JENKINS_REF/init.groovy.d/
 
-EXPOSE 8080
+EXPOSE 8080:8080
