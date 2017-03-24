@@ -1,6 +1,12 @@
 ant:1.4
 build-timeout:1.18
 email-ext:2.51
+jquery:1.11.2-0
+junit:1.19
+mailer:1.18
 multiple-scms:0.6
+matrix-project:1.8
 nodelabelparameter:1.7.2
 postbuild-task:1.8
+structs:1.5
+token-macro:2.0

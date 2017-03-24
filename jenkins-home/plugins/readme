@@ -2,3 +2,17 @@
 
 Copy and past `script-list-plugins.groovy` in script console http://[JENKINS_URL]/script
 after running the script, use the output to update plugins.txt
+
+
+ant:1.4                     + dependencies: structs:1.5
+build-timeout:1.18          + dependencies: token-macro:2.0
+email-ext:2.51              + dependencies: token-macro:2.0, matrix-project:1.8, junit:1.19, token-macro:2.0, mailer:1.18
+jquery:1.11.2-0
+junit:1.19
+mailer:1.18
+multiple-scms:0.6
+matrix-project:1.8
+nodelabelparameter:1.7.2    + dependencies: token-macro:2.0, jquery:1.11.2-0
+postbuild-task:1.8
+structs:1.5
+token-macro:2.0
