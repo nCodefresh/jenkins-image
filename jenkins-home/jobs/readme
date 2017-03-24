@@ -1,0 +1,4 @@
+jenkins-cli
+-----------
+java -jar jenkins-cli.jar -s http://server:port/ get-job JOB_NAME > YOUR_JOB_NAME.xml
+java -jar jenkins-cli.jar -s http://server:port/ get-job JOB_NAME --username USERNAME --password TOKEN > YOUR_JOB_NAME.xml

@@ -1,0 +1,571 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>Node</name>
+          <description></description>
+          <allowedSlaves>
+            <string>ALL (no restriction)</string>
+          </allowedSlaves>
+          <defaultSlaves>
+            <string>sav-mac-1</string>
+          </defaultSlaves>
+          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
+          <allowMultiNodeSelection>false</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>TESTLINK_URL</name>
+          <description>https://test-qatestlink.enterprise.886ventures.com/lib/api/xmlrpc/v1/xmlrpc.php
+http://savant.homelinux.net/lib/api/xmlrpc/v1/xmlrpc.php</description>
+          <defaultValue>https://test-qatestlink.enterprise.886ventures.com/lib/api/xmlrpc/v1/xmlrpc.php</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>TESTLINK_DEV_KEY</name>
+          <description></description>
+          <defaultValue>3ea1ad3fd48167a7e5ec7a7023bfc82f</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>TESTLINK_PROJECT</name>
+          <description></description>
+          <defaultValue>Automation Demo</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>TESTLINK_PLAN</name>
+          <description></description>
+          <defaultValue>Automation Plan Demo</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SAVANT_JENKINS_BUILD_URL</name>
+          <description>savant-systems-pro-beta.apk</description>
+          <defaultValue>https://jenkins.cs.savantsystems.com/view/R-8.x/job/android-savant-app-pro-8.2</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>SAVANT_BUILD_NAME</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Control-pro-Beta.apk</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>SAVANT_APP</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>pro-beta</string>
+              <string>qa2</string>
+              <string>mid</string>
+              <string>pro</string>
+              <string>beta</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>RPM_CONFIG</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>/Users/RPM/Desktop/Test config Nikolai.rpmConfig/</string>
+              <string>/Users/nikolai/dev/savant/Test config Nikolai.rpmConfig/</string>
+              <string>/Users/RPM/Desktop/Test config host 2.rpmConfig/</string>
+              <string>/Users/RPM/Desktop/Test config(2017-01-19_13-16-36).rpmConfig/</string>
+              <string>/Users/jabraham/Documents/SavantConfig/Test config.rpmConfig/</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>PROPERTIES</name>
+          <description>Path to temp.properties file with test parameters</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>/Users/RPM/dev/artifacts/properties/temp.properties</string>
+              <string>/Users/nikolai/dev/savant/savant-automation/artifacts/properties/temp.properties</string>
+              <string>/Users/jabraham/Documents/temp.properties</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>PASSWORD</name>
+          <description>sudo password</description>
+          <defaultValue>RPM</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="org.jenkinsci.plugins.multiplescms.MultiSCM" plugin="multiple-scms@0.6">
+    <scms>
+      <hudson.plugins.git.GitSCM plugin="git@3.0.1">
+        <configVersion>2</configVersion>
+        <userRemoteConfigs>
+          <hudson.plugins.git.UserRemoteConfig>
+            <url>https://git.cs.savantsystems.com/scm/quat/automation-module.git</url>
+            <credentialsId>quat</credentialsId>
+          </hudson.plugins.git.UserRemoteConfig>
+        </userRemoteConfigs>
+        <branches>
+          <hudson.plugins.git.BranchSpec>
+            <name>*/master</name>
+          </hudson.plugins.git.BranchSpec>
+        </branches>
+        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+        <submoduleCfg class="list"/>
+        <extensions>
+          <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+            <relativeTargetDir>automation-module</relativeTargetDir>
+          </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+        </extensions>
+      </hudson.plugins.git.GitSCM>
+      <hudson.plugins.git.GitSCM plugin="git@3.0.1">
+        <configVersion>2</configVersion>
+        <userRemoteConfigs>
+          <hudson.plugins.git.UserRemoteConfig>
+            <url>https://git.cs.savantsystems.com/scm/quat/artifacts.git</url>
+            <credentialsId>quat</credentialsId>
+          </hudson.plugins.git.UserRemoteConfig>
+        </userRemoteConfigs>
+        <branches>
+          <hudson.plugins.git.BranchSpec>
+            <name>*/master</name>
+          </hudson.plugins.git.BranchSpec>
+        </branches>
+        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+        <submoduleCfg class="list"/>
+        <extensions>
+          <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+            <relativeTargetDir>artifacts</relativeTargetDir>
+          </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+          <hudson.plugins.git.extensions.impl.CloneOption>
+            <shallow>false</shallow>
+            <noTags>false</noTags>
+            <reference></reference>
+            <timeout>20</timeout>
+            <depth>0</depth>
+            <honorRefspec>false</honorRefspec>
+          </hudson.plugins.git.extensions.impl.CloneOption>
+        </extensions>
+      </hudson.plugins.git.GitSCM>
+      <hudson.plugins.git.GitSCM plugin="git@3.0.1">
+        <configVersion>2</configVersion>
+        <userRemoteConfigs>
+          <hudson.plugins.git.UserRemoteConfig>
+            <url>https://git.cs.savantsystems.com/scm/quat/build-manager.git</url>
+            <credentialsId>quat</credentialsId>
+          </hudson.plugins.git.UserRemoteConfig>
+        </userRemoteConfigs>
+        <branches>
+          <hudson.plugins.git.BranchSpec>
+            <name>*/master</name>
+          </hudson.plugins.git.BranchSpec>
+        </branches>
+        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+        <submoduleCfg class="list"/>
+        <extensions>
+          <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+            <relativeTargetDir>build-manager</relativeTargetDir>
+          </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+        </extensions>
+      </hudson.plugins.git.GitSCM>
+      <hudson.plugins.git.GitSCM plugin="git@3.0.1">
+        <configVersion>2</configVersion>
+        <userRemoteConfigs>
+          <hudson.plugins.git.UserRemoteConfig>
+            <url>https://git.cs.savantsystems.com/scm/quat/report-manager.git</url>
+            <credentialsId>quat</credentialsId>
+          </hudson.plugins.git.UserRemoteConfig>
+        </userRemoteConfigs>
+        <branches>
+          <hudson.plugins.git.BranchSpec>
+            <name>*/master</name>
+          </hudson.plugins.git.BranchSpec>
+        </branches>
+        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+        <submoduleCfg class="list"/>
+        <extensions>
+          <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+            <relativeTargetDir>report-manager</relativeTargetDir>
+          </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+        </extensions>
+      </hudson.plugins.git.GitSCM>
+      <hudson.plugins.git.GitSCM plugin="git@3.0.1">
+        <configVersion>2</configVersion>
+        <userRemoteConfigs>
+          <hudson.plugins.git.UserRemoteConfig>
+            <url>https://git.cs.savantsystems.com/scm/quat/savant-uiautomator-test.git</url>
+            <credentialsId>quat</credentialsId>
+          </hudson.plugins.git.UserRemoteConfig>
+        </userRemoteConfigs>
+        <branches>
+          <hudson.plugins.git.BranchSpec>
+            <name>*/master</name>
+          </hudson.plugins.git.BranchSpec>
+        </branches>
+        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+        <submoduleCfg class="list"/>
+        <extensions>
+          <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+            <relativeTargetDir>savant-uiautomator-test</relativeTargetDir>
+          </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+        </extensions>
+      </hudson.plugins.git.GitSCM>
+      <hudson.plugins.git.GitSCM plugin="git@3.0.1">
+        <configVersion>2</configVersion>
+        <userRemoteConfigs>
+          <hudson.plugins.git.UserRemoteConfig>
+            <url>https://git.cs.savantsystems.com/scm/quat/jenkins-build-info.git</url>
+            <credentialsId>quat</credentialsId>
+          </hudson.plugins.git.UserRemoteConfig>
+        </userRemoteConfigs>
+        <branches>
+          <hudson.plugins.git.BranchSpec>
+            <name>*/master</name>
+          </hudson.plugins.git.BranchSpec>
+        </branches>
+        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+        <submoduleCfg class="list"/>
+        <extensions>
+          <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+            <relativeTargetDir>jenkins-build-info</relativeTargetDir>
+          </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+        </extensions>
+      </hudson.plugins.git.GitSCM>
+      <hudson.plugins.git.GitSCM plugin="git@3.0.1">
+        <configVersion>2</configVersion>
+        <userRemoteConfigs>
+          <hudson.plugins.git.UserRemoteConfig>
+            <url>https://git.cs.savantsystems.com/scm/quat/device-manager.git</url>
+            <credentialsId>quat</credentialsId>
+          </hudson.plugins.git.UserRemoteConfig>
+        </userRemoteConfigs>
+        <branches>
+          <hudson.plugins.git.BranchSpec>
+            <name>*/master</name>
+          </hudson.plugins.git.BranchSpec>
+        </branches>
+        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+        <submoduleCfg class="list"/>
+        <extensions>
+          <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+            <relativeTargetDir>device-manager</relativeTargetDir>
+          </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+        </extensions>
+      </hudson.plugins.git.GitSCM>
+      <hudson.plugins.git.GitSCM plugin="git@3.0.1">
+        <configVersion>2</configVersion>
+        <userRemoteConfigs>
+          <hudson.plugins.git.UserRemoteConfig>
+            <url>https://git.cs.savantsystems.com/scm/quat/testlink-api.git</url>
+            <credentialsId>quat</credentialsId>
+          </hudson.plugins.git.UserRemoteConfig>
+        </userRemoteConfigs>
+        <branches>
+          <hudson.plugins.git.BranchSpec>
+            <name>*/master</name>
+          </hudson.plugins.git.BranchSpec>
+        </branches>
+        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+        <submoduleCfg class="list"/>
+        <extensions>
+          <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+            <relativeTargetDir>testlink-api</relativeTargetDir>
+          </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+        </extensions>
+      </hudson.plugins.git.GitSCM>
+      <hudson.plugins.git.GitSCM plugin="git@3.0.1">
+        <configVersion>2</configVersion>
+        <userRemoteConfigs>
+          <hudson.plugins.git.UserRemoteConfig>
+            <url>https://git.cs.savantsystems.com/scm/quat/savant-automation.git</url>
+            <credentialsId>quat</credentialsId>
+          </hudson.plugins.git.UserRemoteConfig>
+        </userRemoteConfigs>
+        <branches>
+          <hudson.plugins.git.BranchSpec>
+            <name>*/master</name>
+          </hudson.plugins.git.BranchSpec>
+        </branches>
+        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+        <submoduleCfg class="list"/>
+        <extensions>
+          <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+            <relativeTargetDir>build-automation</relativeTargetDir>
+          </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+        </extensions>
+      </hudson.plugins.git.GitSCM>
+      <hudson.plugins.git.GitSCM plugin="git@3.0.1">
+        <configVersion>2</configVersion>
+        <userRemoteConfigs>
+          <hudson.plugins.git.UserRemoteConfig>
+            <url>https://git.cs.savantsystems.com/scm/quat/testrail-api.git</url>
+            <credentialsId>quat</credentialsId>
+          </hudson.plugins.git.UserRemoteConfig>
+        </userRemoteConfigs>
+        <branches>
+          <hudson.plugins.git.BranchSpec>
+            <name>*/master</name>
+          </hudson.plugins.git.BranchSpec>
+        </branches>
+        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+        <submoduleCfg class="list"/>
+        <extensions>
+          <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+            <relativeTargetDir>testrail-api</relativeTargetDir>
+          </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+        </extensions>
+      </hudson.plugins.git.GitSCM>
+      <hudson.plugins.git.GitSCM plugin="git@3.0.1">
+        <configVersion>2</configVersion>
+        <userRemoteConfigs>
+          <hudson.plugins.git.UserRemoteConfig>
+            <url>https://git.cs.savantsystems.com/scm/quat/jar-signer.git</url>
+            <credentialsId>quat</credentialsId>
+          </hudson.plugins.git.UserRemoteConfig>
+        </userRemoteConfigs>
+        <branches>
+          <hudson.plugins.git.BranchSpec>
+            <name>*/master</name>
+          </hudson.plugins.git.BranchSpec>
+        </branches>
+        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+        <submoduleCfg class="list"/>
+        <extensions>
+          <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+            <relativeTargetDir>jar-signer</relativeTargetDir>
+          </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+          <hudson.plugins.git.extensions.impl.CloneOption>
+            <shallow>false</shallow>
+            <noTags>false</noTags>
+            <reference></reference>
+            <timeout>20</timeout>
+            <depth>0</depth>
+            <honorRefspec>false</honorRefspec>
+          </hudson.plugins.git.extensions.impl.CloneOption>
+        </extensions>
+      </hudson.plugins.git.GitSCM>
+      <hudson.plugins.git.GitSCM plugin="git@3.0.1">
+        <configVersion>2</configVersion>
+        <userRemoteConfigs>
+          <hudson.plugins.git.UserRemoteConfig>
+            <url>https://git.cs.savantsystems.com/scm/quat/wifi-test.git</url>
+            <credentialsId>quat</credentialsId>
+          </hudson.plugins.git.UserRemoteConfig>
+        </userRemoteConfigs>
+        <branches>
+          <hudson.plugins.git.BranchSpec>
+            <name>*/master</name>
+          </hudson.plugins.git.BranchSpec>
+        </branches>
+        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+        <submoduleCfg class="list"/>
+        <extensions>
+          <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+            <relativeTargetDir>wifi-test</relativeTargetDir>
+          </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+        </extensions>
+      </hudson.plugins.git.GitSCM>
+      <hudson.plugins.git.GitSCM plugin="git@3.0.1">
+        <configVersion>2</configVersion>
+        <userRemoteConfigs>
+          <hudson.plugins.git.UserRemoteConfig>
+            <url>https://git.cs.savantsystems.com/scm/quat/irdecodermanager.git</url>
+            <credentialsId>quat</credentialsId>
+          </hudson.plugins.git.UserRemoteConfig>
+        </userRemoteConfigs>
+        <branches>
+          <hudson.plugins.git.BranchSpec>
+            <name>*/master</name>
+          </hudson.plugins.git.BranchSpec>
+        </branches>
+        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+        <submoduleCfg class="list"/>
+        <extensions>
+          <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+            <relativeTargetDir>irdecodermanager</relativeTargetDir>
+          </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+        </extensions>
+      </hudson.plugins.git.GitSCM>
+      <hudson.plugins.git.GitSCM plugin="git@3.0.1">
+        <configVersion>2</configVersion>
+        <userRemoteConfigs>
+          <hudson.plugins.git.UserRemoteConfig>
+            <url>https://git.cs.savantsystems.com/scm/quat/irdecoder.git</url>
+            <credentialsId>quat</credentialsId>
+          </hudson.plugins.git.UserRemoteConfig>
+        </userRemoteConfigs>
+        <branches>
+          <hudson.plugins.git.BranchSpec>
+            <name>*/master</name>
+          </hudson.plugins.git.BranchSpec>
+        </branches>
+        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+        <submoduleCfg class="list"/>
+        <extensions>
+          <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+            <relativeTargetDir>irdecoder</relativeTargetDir>
+          </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+        </extensions>
+      </hudson.plugins.git.GitSCM>
+      <hudson.plugins.git.GitSCM plugin="git@3.0.1">
+        <configVersion>2</configVersion>
+        <userRemoteConfigs>
+          <hudson.plugins.git.UserRemoteConfig>
+            <url>https://git.cs.savantsystems.com/scm/quat/testexecutor.git</url>
+            <credentialsId>quat</credentialsId>
+          </hudson.plugins.git.UserRemoteConfig>
+        </userRemoteConfigs>
+        <branches>
+          <hudson.plugins.git.BranchSpec>
+            <name>*/master</name>
+          </hudson.plugins.git.BranchSpec>
+        </branches>
+        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+        <submoduleCfg class="list"/>
+        <extensions>
+          <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+            <relativeTargetDir>TestExecutor</relativeTargetDir>
+          </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+        </extensions>
+      </hudson.plugins.git.GitSCM>
+      <hudson.plugins.git.GitSCM plugin="git@3.0.1">
+        <configVersion>2</configVersion>
+        <userRemoteConfigs>
+          <hudson.plugins.git.UserRemoteConfig>
+            <url>https://git.cs.savantsystems.com/scm/quat/nest-camera-api.git</url>
+            <credentialsId>quat</credentialsId>
+          </hudson.plugins.git.UserRemoteConfig>
+        </userRemoteConfigs>
+        <branches>
+          <hudson.plugins.git.BranchSpec>
+            <name>*/master</name>
+          </hudson.plugins.git.BranchSpec>
+        </branches>
+        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+        <submoduleCfg class="list"/>
+        <extensions>
+          <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+            <relativeTargetDir>nest-camera-api</relativeTargetDir>
+          </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+        </extensions>
+      </hudson.plugins.git.GitSCM>
+    </scms>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>pwd
+java -version
+ant -version
+
+# copy general build.xml to root folder
+cp build-automation/* .
+ls -l
+
+# macos: give permissions on edit folders
+echo $PASSWORD | sudo -S chmod -R 777 *
+
+# creating build.xml for uiautomator test
+cd savant-uiautomator-test/
+android create uitest-project -n savant-uiautomator-test -t 1 -p .
+cd ../
+
+cp $PROPERTIES artifacts/properties/
+echo &quot;{\&quot;host_config\&quot;: \&quot;$RPM_CONFIG\&quot;}&quot; &gt; irdecoder/config.json
+
+ant -Dbuild=0.1
+
+# run ir decoder server
+#cd irdecodermanager/build/jar
+#java -jar IRDecoder.jar -e command start -e password $PASSWORD
+#cd -
+
+cd artifacts/
+java -jar build-manager.jar -e suit &quot;acceptance&quot; -e build &quot;$SAVANT_JENKINS_BUILD_URL&quot; -e buildName &quot;$SAVANT_BUILD_NAME&quot; -e job &quot;$BUILD_URL&quot; -e downloadBuild false -e testlinkUrl &quot;$TESTLINK_URL&quot; -e testlinkDevKey &quot;$TESTLINK_DEV_KEY&quot; -e testlinkProject &quot;$TESTLINK_PROJECT&quot; -e testlinkPlan &quot;$TESTLINK_PLAN&quot; -e app &quot;$SAVANT_APP&quot; -e rpmConfig &quot;$RPM_CONFIG&quot; -e sudoPassword &quot;$PASSWORD&quot; -e platform &quot;android&quot;</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.plugins.postbuildtask.PostbuildTask plugin="postbuild-task@1.8">
+      <tasks>
+        <hudson.plugins.postbuildtask.TaskProperties>
+          <logTexts>
+            <hudson.plugins.postbuildtask.LogProperties>
+              <logText></logText>
+              <operator>AND</operator>
+            </hudson.plugins.postbuildtask.LogProperties>
+          </logTexts>
+          <EscalateStatus>false</EscalateStatus>
+          <RunIfJobSuccessful>false</RunIfJobSuccessful>
+          <script>pwd&#xd;
+ls -l&#xd;
+cd artifacts/&#xd;
+java -jar report-manager.jar&#xd;
+&#xd;
+cd ../irdecodermanager/build/jar/&#xd;
+java -jar IRDecoder.jar -e command stop -e password $PASSWORD&#xd;
+&#xd;
+#if [ -f irdecoder/Logs ]; then&#xd;
+#    cp irdecoder/Logs/* /var/lib/jenkins/workspace/savant-automation/artifacts/logs/&#xd;
+#fi</script>
+        </hudson.plugins.postbuildtask.TaskProperties>
+      </tasks>
+    </hudson.plugins.postbuildtask.PostbuildTask>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>artifacts/results/**/*,artifacts/irdecoder/Logs/*,artifacts/irdecoder/log.txt</artifacts>
+      <allowEmptyArchive>false</allowEmptyArchive>
+      <onlyIfSuccessful>false</onlyIfSuccessful>
+      <fingerprint>false</fingerprint>
+      <defaultExcludes>true</defaultExcludes>
+      <caseSensitive>true</caseSensitive>
+    </hudson.tasks.ArtifactArchiver>
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.51">
+      <recipientList>$DEFAULT_RECIPIENTS,ipyanin@gmail.com,jojiabraham@gmail.com,nikolai.ivanov@savant.com,maksim.sushkevich@savant.com</recipientList>
+      <configuredTriggers>
+        <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+          <email>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern></attachmentsPattern>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+      </configuredTriggers>
+      <contentType>default</contentType>
+      <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
+      <defaultContent>$DEFAULT_CONTENT</defaultContent>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
+      <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
+      <attachBuildLog>true</attachBuildLog>
+      <compressBuildLog>true</compressBuildLog>
+      <replyTo>$DEFAULT_REPLYTO</replyTo>
+      <saveOutput>false</saveOutput>
+      <disabled>false</disabled>
+    </hudson.plugins.emailext.ExtendedEmailPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.18">
+      <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
+        <timeoutMinutes>120</timeoutMinutes>
+      </strategy>
+      <operationList/>
+    </hudson.plugins.build__timeout.BuildTimeoutWrapper>
+  </buildWrappers>
+</project>
