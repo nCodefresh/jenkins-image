@@ -10,4 +10,5 @@ matrix-project:1.8
 nodelabelparameter:1.7.2
 postbuild-task:1.8
 structs:1.5
+script-security:1.25
 token-macro:2.0
