@@ -24,12 +24,12 @@
         <hudson.model.StringParameterDefinition>
           <name>TESTLINK_URL</name>
           <description></description>
-          <defaultValue>https://test-qatestlink.enterprise.886ventures.com/lib/api/xmlrpc/v1/xmlrpc.php</defaultValue>
+          <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>TESTLINK_DEV_KEY</name>
           <description></description>
-          <defaultValue>3ea1ad3fd48167a7e5ec7a7023bfc82f</defaultValue>
+          <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>TESTLINK_PROJECT</name>
@@ -44,7 +44,7 @@
         <hudson.model.StringParameterDefinition>
           <name>SAVANT_JENKINS_BUILD_URL</name>
           <description>Pro-QA2-Enterprise-Savant.ipa</description>
-          <defaultValue>https://jenkins.cs.savantsystems.com/view/R-8.x/job/ios-savant-app-pro-8.2/</defaultValue>
+          <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
           <name>SAVANT_BUILD_NAME</name>
@@ -590,7 +590,7 @@ java -jar IRDecoder.jar -e command stop -e password $PASSWORD&#xd;
       </tasks>
     </hudson.plugins.postbuildtask.PostbuildTask>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>artifacts/results/**/*,artifacts/irdecoder/Logs/*,artifacts/irdecoder/log.txt</artifacts>
+      <artifacts>artifacts/results/**/*</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
@@ -598,7 +598,7 @@ java -jar IRDecoder.jar -e command stop -e password $PASSWORD&#xd;
       <caseSensitive>true</caseSensitive>
     </hudson.tasks.ArtifactArchiver>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.51">
-      <recipientList>$DEFAULT_RECIPIENTS,ipyanin@gmail.com,jojiabraham@gmail.com,nikolai.ivanov@savant.com,maksim.sushkevich@savant.com</recipientList>
+      <recipientList>$DEFAULT_RECIPIENTS</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
